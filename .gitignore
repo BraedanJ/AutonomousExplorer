@@ -15,3 +15,7 @@
 *.exe
 *.out
 *.app
+
+# Personal SOPC settings
+.sopc_builder/
+sopc_builder_log.txt

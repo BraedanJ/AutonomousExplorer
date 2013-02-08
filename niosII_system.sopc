@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<system name="niosII_system">
+ <parameter name="bonusData"><![CDATA[bonusData 
+{
+   element clk_0
+   {
+      datum _sortIndex
+      {
+         value = "0";
+         type = "int";
+      }
+   }
+}
+]]></parameter>
+ <parameter name="clockCrossingAdapter" value="HANDSHAKE" />
+ <parameter name="deviceFamily" value="CYCLONEIVE" />
+ <parameter name="fabricMode" value="SOPC" />
+ <parameter name="generateLegacySim" value="false" />
+ <parameter name="generationId" value="0" />
+ <parameter name="globalResetBus" value="true" />
+ <parameter name="hdlLanguage" value="VHDL" />
+ <parameter name="maxAdditionalLatency" value="0" />
+ <parameter name="projectName" value="AutonomousExplorer" />
+ <parameter name="sopcBorderPoints" value="true" />
+ <parameter name="systemHash" value="-1859354253" />
+ <parameter name="timeStamp" value="1360191379137" />
+ <module kind="clock_source" version="10.1" enabled="1" name="clk_0">
+  <parameter name="clockFrequency" value="50000000" />
+  <parameter name="clockFrequencyKnown" value="true" />
+  <parameter name="inputClockFrequency" value="0" />
+  <parameter name="resetSynchronousEdges" value="NONE" />
+ </module>
+</system>
