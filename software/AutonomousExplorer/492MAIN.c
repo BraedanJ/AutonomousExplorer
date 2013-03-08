@@ -44,13 +44,12 @@
 
 OS_STK    task1_stk[TASK_STACKSIZE];
 OS_STK    task2_stk[TASK_STACKSIZE];
-OS_STK    task3_stk[TASK_STACKSIZE];
 
 /* Definition of Task Priorities */
 
 #define TASK1_PRIORITY      1
 #define TASK2_PRIORITY      2
-#define TASK3_PRIORITY      3
+
 
 #define TEST 1
 void * MyQueue[ 100 ];
@@ -59,24 +58,46 @@ OS_EVENT *QueueEvent;
 OS_EVENT *NewData;
 void * RawData[ 100 ];
 
-
+void mapData(double front,double left, double right,int angle, int command);
 
 
 /* Prints "Hello World" and sleeps for three seconds */
 void task1(void* pdata)
 {
-      int testData=TEST;
+ int testData=TEST;
+
  INT8U  err=OS_NO_ERR;
  char sValue[256];
 double data[4];
-  char *LEDS=LEDS_BASE;
-  if(testData==0)
+  char *LEDS=GREED_LEDS_BASE;
+  if(testData==1)
+  {
+      else if(testData==1)
+          {
+          int a=0;
+           int counter=0;
+          double front[1000];
+          double left[1000];
+          double right[1000];
+          int angles[1000];
+          int test[1000];
+         counter= GenerateTestData(front,left,right,angles,test,a);
+          for(a=0;a<=counter;a++)
+          {
+          *LEDS =0xf0;
+          OSTimeDlyHMSM(0, 0, 0, 500);
+           *LEDS =0x0f;
+         OSTimeDlyHMSM(0, 0, 0, 500);
+       sprintf(sValue,"%lf %lf %lf %d %d",front[a],left[a],right[a],angles[a],test[a]);
+          }
+          }
+  }
+  
   while (1)
   { 
           *LEDS =0xff;
           OSTimeDlyHMSM(0, 0, 0, 500);
-           *LEDS =0x00;
-          OSTimeDlyHMSM(0, 0, 0, 500);
+      
           int a=0;
           for (a=0;a<5;a++)
           {
@@ -86,26 +107,11 @@ double data[4];
        
        // sprintf(sValue,"%lf %lf %lf %d",data[0],data[1],data[2],data[3]);
         err=OSQPost(NewData, (void *) sValue);
+          *LEDS =0x00;
+          OSTimeDlyHMSM(0, 0, 0, 500);
 
   }
-  else if(testData==1)
-          {
-          int a=0;
-          double front[1000];
-          double left[1000];
-          double right[1000];
-          int angles[1000];
-          int test[1000];
-          GenerateTestData(front,left,right,angles,test);
-          for(a=0;a<=290;a++)
-          {
-          *LEDS =0xf0;
-          OSTimeDlyHMSM(0, 0, 0, 500);
-           *LEDS =0x0f;
-         OSTimeDlyHMSM(0, 0, 0, 500);
-       sprintf(sValue,"%lf %lf %lf %d %d",front[a],left[a],right[a],angles[a],test[a]);
-          }
-          }
+
 }
 
 //lcd task
@@ -129,7 +135,7 @@ void task2(void* pdata)
 
     if (testData==1)
     {
-     sscanf((char*) data, "%lf %lf %lf %d %d ", &front,&left,&right,&compass,test);
+     sscanf((char*) data, "%lf %lf %lf %d %d ", &front,&left,&right,&compass,&test);
     printf(" %lf %lf %lf %d %d: \n",front,left,right,compass,test);
     }
     else
@@ -190,6 +196,7 @@ void task2(void* pdata)
           {
                   //insert right command
           }
+   
 
       }
     if(testData==1)
@@ -199,13 +206,14 @@ void task2(void* pdata)
             printf("ERROR!!!! command= %d test comand= %d \n",command,test);
         }
     }
+ //mapData(front,left,  right, angle,  command)
 }
 }
 
 
 
 
-/*
+
 
 void mapData(double front,double left, double right,int angle, int command)
 {
@@ -215,7 +223,6 @@ double LeftSensor[10000][2];
 double RightSensor[10000][2];
 
 static int a=0;
-
 
 
 
@@ -230,9 +237,7 @@ RightSensor[a][0]=cos((angles)*PI/180)*right+CarPosition[a][0];
 RightSensor[a][1]=sin((angle)*PI/180)*rightar+CarPosition[a][1];
 a++;
 
-
-
-  */
+}
 
 
 
