@@ -26,8 +26,8 @@ entity pwm is
 		avs_pwm_write_n			:	in		std_logic;
 		avs_pwm_chipselect		:	in		std_logic;
 		avs_pwm_address			:	in		std_logic_vector(1 downto 0);
-		avs_pwm_readdata			:	out	std_logic_vector(15 downto 0);
-		avs_pwm_writedata			:	in		std_logic_vector(15 downto 0);
+		avs_pwm_readdata			:	out	std_logic_vector(31 downto 0);
+		avs_pwm_writedata			:	in		std_logic_vector(31 downto 0);
 
 		coe_pwm_output_export	:	out	std_logic
 	);
@@ -49,7 +49,7 @@ begin
 
 		elsif csi_myclock_clk'event and csi_myclock_clk = '1' then
 			if std_logic'(((avs_pwm_chipselect AND NOT avs_pwm_write_n) AND to_std_logic((((std_logic_vector'("000000000000000000000000000000") & (avs_pwm_address)) = std_logic_vector'("00000000000000000000000000000000")))))) = '1' then
-				pwm_signal <= "0000" & avs_pwm_writedata(15 DOWNTO 0);
+				pwm_signal <= avs_pwm_writedata(19 DOWNTO 0);
 			end if;
 		end if;
 	end process;
@@ -63,7 +63,7 @@ begin
 			counter <= counter +1;
 		end if;
 
-		if(counter = "0000111101000010010") then
+		if(counter = "1001100010010110100") then
 			counter <= (others => '0');
 		end if;
 	
