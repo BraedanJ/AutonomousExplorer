@@ -29,6 +29,9 @@
 
 
 #include <stdio.h>
+#include "terasic_lib/terasic_includes.h"
+#include "terasic_lib/adc_spi_read.h"
+#include "terasic_lib/I2C.h"
 #include "includes.h"
 
 /* Definition of Task Stacks */
@@ -40,6 +43,18 @@ OS_STK    task2_stk[TASK_STACKSIZE];
 
 #define TASK1_PRIORITY      1
 #define TASK2_PRIORITY      2
+
+#define PWM_TOTAL_CYCLES    312500
+#define PI                  3.14159265359
+#define WHEEL_DIAMETER      6.2
+#define PULSES_PER_ROTATION 166.666666667
+#define INCHES_PER_VOLT     0.006445313
+#define COMPASS_ADDRESS     0x42
+
+void setPWM(int PWMBase, float percentage);
+double getEncoderDistance(int encoderBase);
+float getSensor(int nextSensor);
+float getHeading();
 
 /* Prints "Hello World" and sleeps for three seconds */
 void task1(void* pdata)
@@ -85,6 +100,26 @@ int main(void)
                   0);
   OSStart();
   return 0;
+}
+
+void setPWM(int PWMBase, float percentage) {
+    IOWR(PWMBase, 0, percentage * PWM_TOTAL_CYCLES);   
+}
+
+double getEncoderDistance(int encoderBase) {
+	int nPulses = (int) IORD(encoderBase, 0);    
+    return nPulses * PI * WHEEL_DIAMETER / PULSES_PER_ROTATION;	
+}
+
+float getSensor(int nextSensor) {
+    alt_u16 data16 = ADC_Read(nextSensor);    
+    return (float) data16 * 3.3 / 4095.0 * INCHES_PER_VOLT;
+}
+
+float getHeading() {
+    alt_u8 buf[2];
+    I2C_MultipleRead(I2C_SCL_BASE, I2C_SDA_BASE, COMPASS_ADDRESS, 0x00, buf, sizeof(buf));
+    return (float) (((int) buf[0] << 8) + ((int) buf[1])) / 10;
 }
 
 /******************************************************************************
