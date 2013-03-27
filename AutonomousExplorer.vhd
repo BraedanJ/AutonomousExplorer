@@ -21,6 +21,12 @@ entity AutonomousExplorer is
       DRAM_DQ 		: 	inout 	std_logic_vector(15 DOWNTO 0);
 		DRAM_DQM		:	out		std_logic_vector(1 downto 0);
 
+		--ADC
+		ADC_CS_N		:	out		std_logic;
+		ADC_SADDR	:	out		std_logic;
+		ADC_SCLK		:	out		std_logic;
+		ADC_SDAT		:	in			std_logic;
+		
       -- CLOCK port
       CLOCK_50 	:	in  		std_logic;
 					 
@@ -60,6 +66,12 @@ component niosII_system
          zs_ras_n_from_the_sdram : out std_logic;
 			zs_we_n_from_the_sdram : out std_logic;
 
+			--ADC
+			SPI_CLK_from_the_adc_spi_read : out std_logic;
+         SPI_CS_n_from_the_adc_spi_read : out std_logic;
+         SPI_IN_to_the_adc_spi_read : in std_logic;
+         SPI_OUT_from_the_adc_spi_read : out std_logic;
+			
          -- CLOCK port
          clk_50           : in  std_logic;
 					 
@@ -102,6 +114,10 @@ begin
 				zs_dqm_from_the_sdram => DRAM_DQM, 
 				zs_ras_n_from_the_sdram => DRAM_RAS_N, 
 				zs_we_n_from_the_sdram => DRAM_WE_N,
+				SPI_CLK_from_the_adc_spi_read => ADC_SCLK,
+				SPI_CS_n_from_the_adc_spi_read => ADC_CS_N,
+				SPI_IN_to_the_adc_spi_read => ADC_SDAT,
+				SPI_OUT_from_the_adc_spi_read => ADC_SADDR,
 				clk_50 => CLOCK_50, 
 				in_port_to_the_sw => SW, 
 				reset_n => KEY(0),
