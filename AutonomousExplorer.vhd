@@ -86,11 +86,22 @@ component niosII_system
 			coe_pwm_output_export_from_the_PWM_left : out std_logic;
 			coe_pwm_output_export_from_the_PWM_right : out std_logic;
 			
+			--Wheel direction
+			out_port_from_the_dir_left : out std_logic;
+			out_port_from_the_dir_right : out std_logic;
+			
 			--encoders
 			coe_encoder_input_export_to_the_encoder_front_left : in std_logic;
 			coe_encoder_input_export_to_the_encoder_front_right : in std_logic;
 			coe_encoder_input_export_to_the_encoder_back_left : in std_logic;
-			coe_encoder_input_export_to_the_encoder_back_right : in std_logic
+			coe_encoder_input_export_to_the_encoder_back_right : in std_logic;
+			
+			--Sensor chain init
+			out_port_from_the_chain_init : out std_logic;
+			
+			--I2C
+			out_port_from_the_i2c_scl : out std_logic;              
+         bidir_port_to_and_from_the_i2c_sda : inout std_logic
         );		  
 end component;
 		  
@@ -123,12 +134,20 @@ begin
 				reset_n => KEY(0),
 		  
 		  
-				coe_pwm_output_export_from_the_PWM_left => GPIO_0(0),
-				coe_pwm_output_export_from_the_PWM_right => GPIO_0(1),
+				coe_pwm_output_export_from_the_PWM_left => GPIO_0(8),
+				coe_pwm_output_export_from_the_PWM_right => GPIO_0(9),
+				
+				out_port_from_the_dir_left => GPIO_0(10),
+				out_port_from_the_dir_right => GPIO_0(11),
 				
 				coe_encoder_input_export_to_the_encoder_front_left => GPIO_0(2),
 				coe_encoder_input_export_to_the_encoder_front_right => GPIO_0(3),
 				coe_encoder_input_export_to_the_encoder_back_left => GPIO_0(4),
-				coe_encoder_input_export_to_the_encoder_back_right => GPIO_0(5)
+				coe_encoder_input_export_to_the_encoder_back_right => GPIO_0(5),
+				
+				out_port_from_the_chain_init => GPIO_0(20),
+				
+				out_port_from_the_i2c_scl => GPIO_0(0),
+            bidir_port_to_and_from_the_i2c_sda => GPIO_0(1)
 		  );
 end structure;

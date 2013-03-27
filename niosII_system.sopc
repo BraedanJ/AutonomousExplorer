@@ -38,7 +38,7 @@
    {
       datum baseAddress
       {
-         value = "100667504";
+         value = "100667552";
          type = "long";
       }
    }
@@ -72,6 +72,14 @@
       {
          value = "altpll_adc";
          type = "String";
+      }
+   }
+   element chain_init
+   {
+      datum _sortIndex
+      {
+         value = "25";
+         type = "int";
       }
    }
    element clk_50
@@ -129,6 +137,22 @@
          type = "String";
       }
    }
+   element dir_left
+   {
+      datum _sortIndex
+      {
+         value = "23";
+         type = "int";
+      }
+   }
+   element dir_right
+   {
+      datum _sortIndex
+      {
+         value = "24";
+         type = "int";
+      }
+   }
    element encoder_front_left.encoder
    {
       datum baseAddress
@@ -137,11 +161,11 @@
          type = "long";
       }
    }
-   element encoder_back_left.encoder
+   element encoder_front_right.encoder
    {
       datum baseAddress
       {
-         value = "100667472";
+         value = "100667456";
          type = "long";
       }
    }
@@ -153,11 +177,11 @@
          type = "long";
       }
    }
-   element encoder_front_right.encoder
+   element encoder_back_left.encoder
    {
       datum baseAddress
       {
-         value = "100667456";
+         value = "100667472";
          type = "long";
       }
    }
@@ -322,19 +346,35 @@
          type = "long";
       }
    }
-   element sw.s1
-   {
-      datum baseAddress
-      {
-         value = "64";
-         type = "long";
-      }
-   }
    element i2c_scl.s1
    {
       datum baseAddress
       {
          value = "2064";
+         type = "long";
+      }
+   }
+   element dir_right.s1
+   {
+      datum baseAddress
+      {
+         value = "100667520";
+         type = "long";
+      }
+   }
+   element led.s1
+   {
+      datum baseAddress
+      {
+         value = "48";
+         type = "long";
+      }
+   }
+   element key.s1
+   {
+      datum baseAddress
+      {
+         value = "32";
          type = "long";
       }
    }
@@ -346,11 +386,19 @@
          type = "long";
       }
    }
-   element led.s1
+   element chain_init.s1
    {
       datum baseAddress
       {
-         value = "48";
+         value = "100667536";
+         type = "long";
+      }
+   }
+   element dir_left.s1
+   {
+      datum baseAddress
+      {
+         value = "100667504";
          type = "long";
       }
    }
@@ -367,27 +415,11 @@
          type = "long";
       }
    }
-   element timer.s1
+   element sw.s1
    {
       datum baseAddress
       {
-         value = "0";
-         type = "long";
-      }
-   }
-   element key.s1
-   {
-      datum baseAddress
-      {
-         value = "32";
-         type = "long";
-      }
-   }
-   element i2c_sda.s1
-   {
-      datum baseAddress
-      {
-         value = "2048";
+         value = "64";
          type = "long";
       }
    }
@@ -396,6 +428,22 @@
       datum baseAddress
       {
          value = "80";
+         type = "long";
+      }
+   }
+   element timer.s1
+   {
+      datum baseAddress
+      {
+         value = "0";
+         type = "long";
+      }
+   }
+   element i2c_sda.s1
+   {
+      datum baseAddress
+      {
+         value = "2048";
          type = "long";
       }
    }
@@ -424,7 +472,7 @@
    {
       datum baseAddress
       {
-         value = "100667512";
+         value = "100667560";
          type = "long";
       }
    }
@@ -479,8 +527,8 @@
  <parameter name="maxAdditionalLatency" value="0" />
  <parameter name="projectName">AutonomousExplorer.qpf</parameter>
  <parameter name="sopcBorderPoints" value="true" />
- <parameter name="systemHash" value="48696558084" />
- <parameter name="timeStamp" value="1363294730047" />
+ <parameter name="systemHash" value="59677949687" />
+ <parameter name="timeStamp" value="1364425629131" />
  <module kind="clock_source" version="10.1" enabled="1" name="clk_50">
   <parameter name="clockFrequency" value="50000000" />
   <parameter name="clockFrequencyKnown" value="true" />
@@ -580,7 +628,7 @@
   <parameter name="dcache_numTCDM" value="_0" />
   <parameter name="dcache_lineSize" value="_32" />
   <parameter name="dcache_bursts" value="false" />
-  <parameter name="dataSlaveMapParam"><![CDATA[<address-map><slave name='sdram.s1' start='0x2000000' end='0x4000000' /><slave name='timer.s1' start='0x4000000' end='0x4000020' /><slave name='key.s1' start='0x4000020' end='0x4000030' /><slave name='led.s1' start='0x4000030' end='0x4000040' /><slave name='sw.s1' start='0x4000040' end='0x4000050' /><slave name='select_i2c_clk.s1' start='0x4000050' end='0x4000060' /><slave name='sysid.control_slave' start='0x4000060' end='0x4000068' /><slave name='epcs.epcs_control_port' start='0x5000000' end='0x5000800' /><slave name='i2c_sda.s1' start='0x5000800' end='0x5000810' /><slave name='i2c_scl.s1' start='0x5000810' end='0x5000820' /><slave name='cpu.jtag_debug_module' start='0x6000800' end='0x6001000' /><slave name='altpll_sys.pll_slave' start='0x6001000' end='0x6001010' /><slave name='PWM_left.pwm' start='0x6001010' end='0x6001020' /><slave name='PWM_right.pwm' start='0x6001020' end='0x6001030' /><slave name='encoder_front_left.encoder' start='0x6001030' end='0x6001040' /><slave name='encoder_front_right.encoder' start='0x6001040' end='0x6001050' /><slave name='encoder_back_left.encoder' start='0x6001050' end='0x6001060' /><slave name='encoder_back_right.encoder' start='0x6001060' end='0x6001070' /><slave name='jtag_uart.avalon_jtag_slave' start='0x6001070' end='0x6001078' /><slave name='adc_spi_read.slave' start='0x6001078' end='0x600107C' /></address-map>]]></parameter>
+  <parameter name="dataSlaveMapParam"><![CDATA[<address-map><slave name='sdram.s1' start='0x2000000' end='0x4000000' /><slave name='timer.s1' start='0x4000000' end='0x4000020' /><slave name='key.s1' start='0x4000020' end='0x4000030' /><slave name='led.s1' start='0x4000030' end='0x4000040' /><slave name='sw.s1' start='0x4000040' end='0x4000050' /><slave name='select_i2c_clk.s1' start='0x4000050' end='0x4000060' /><slave name='sysid.control_slave' start='0x4000060' end='0x4000068' /><slave name='epcs.epcs_control_port' start='0x5000000' end='0x5000800' /><slave name='i2c_sda.s1' start='0x5000800' end='0x5000810' /><slave name='i2c_scl.s1' start='0x5000810' end='0x5000820' /><slave name='cpu.jtag_debug_module' start='0x6000800' end='0x6001000' /><slave name='altpll_sys.pll_slave' start='0x6001000' end='0x6001010' /><slave name='PWM_left.pwm' start='0x6001010' end='0x6001020' /><slave name='PWM_right.pwm' start='0x6001020' end='0x6001030' /><slave name='encoder_front_left.encoder' start='0x6001030' end='0x6001040' /><slave name='encoder_front_right.encoder' start='0x6001040' end='0x6001050' /><slave name='encoder_back_left.encoder' start='0x6001050' end='0x6001060' /><slave name='encoder_back_right.encoder' start='0x6001060' end='0x6001070' /><slave name='dir_left.s1' start='0x6001070' end='0x6001080' /><slave name='dir_right.s1' start='0x6001080' end='0x6001090' /><slave name='chain_init.s1' start='0x6001090' end='0x60010A0' /><slave name='jtag_uart.avalon_jtag_slave' start='0x60010A0' end='0x60010A8' /><slave name='adc_spi_read.slave' start='0x60010A8' end='0x60010AC' /></address-map>]]></parameter>
   <parameter name="dataAddrWidth" value="27" />
   <parameter name="customInstSlavesSystemInfo" value="&lt;info/&gt;" />
   <parameter name="cpuReset" value="false" />
@@ -964,6 +1012,48 @@
  <module kind="encoder" version="1.0" enabled="1" name="encoder_back_right">
   <parameter name="AUTO_MYCLOCK_CLOCK_RATE" value="50000000" />
  </module>
+ <module kind="altera_avalon_pio" version="10.1" enabled="1" name="dir_left">
+  <parameter name="bitClearingEdgeCapReg" value="false" />
+  <parameter name="bitModifyingOutReg" value="false" />
+  <parameter name="captureEdge" value="false" />
+  <parameter name="clockRate" value="50000000" />
+  <parameter name="direction" value="Output" />
+  <parameter name="edgeType" value="RISING" />
+  <parameter name="generateIRQ" value="false" />
+  <parameter name="irqType" value="LEVEL" />
+  <parameter name="resetValue" value="0" />
+  <parameter name="simDoTestBenchWiring" value="false" />
+  <parameter name="simDrivenValue" value="0" />
+  <parameter name="width" value="1" />
+ </module>
+ <module kind="altera_avalon_pio" version="10.1" enabled="1" name="dir_right">
+  <parameter name="bitClearingEdgeCapReg" value="false" />
+  <parameter name="bitModifyingOutReg" value="false" />
+  <parameter name="captureEdge" value="false" />
+  <parameter name="clockRate" value="50000000" />
+  <parameter name="direction" value="Output" />
+  <parameter name="edgeType" value="RISING" />
+  <parameter name="generateIRQ" value="false" />
+  <parameter name="irqType" value="LEVEL" />
+  <parameter name="resetValue" value="0" />
+  <parameter name="simDoTestBenchWiring" value="false" />
+  <parameter name="simDrivenValue" value="0" />
+  <parameter name="width" value="1" />
+ </module>
+ <module kind="altera_avalon_pio" version="10.1" enabled="1" name="chain_init">
+  <parameter name="bitClearingEdgeCapReg" value="false" />
+  <parameter name="bitModifyingOutReg" value="false" />
+  <parameter name="captureEdge" value="false" />
+  <parameter name="clockRate" value="50000000" />
+  <parameter name="direction" value="Output" />
+  <parameter name="edgeType" value="RISING" />
+  <parameter name="generateIRQ" value="false" />
+  <parameter name="irqType" value="LEVEL" />
+  <parameter name="resetValue" value="0" />
+  <parameter name="simDoTestBenchWiring" value="false" />
+  <parameter name="simDrivenValue" value="0" />
+  <parameter name="width" value="1" />
+ </module>
  <connection
    kind="avalon"
    version="10.1"
@@ -1094,7 +1184,7 @@
    start="cpu.data_master"
    end="jtag_uart.avalon_jtag_slave">
   <parameter name="arbitrationPriority" value="1" />
-  <parameter name="baseAddress" value="0x06001070" />
+  <parameter name="baseAddress" value="0x060010a0" />
  </connection>
  <connection kind="interrupt" version="10.1" start="cpu.d_irq" end="jtag_uart.irq">
   <parameter name="irqNumber" value="4" />
@@ -1109,7 +1199,7 @@
    start="cpu.data_master"
    end="adc_spi_read.slave">
   <parameter name="arbitrationPriority" value="1" />
-  <parameter name="baseAddress" value="0x06001078" />
+  <parameter name="baseAddress" value="0x060010a8" />
  </connection>
  <connection
    kind="clock"
@@ -1234,5 +1324,32 @@
    end="encoder_back_right.encoder">
   <parameter name="arbitrationPriority" value="1" />
   <parameter name="baseAddress" value="0x06001060" />
+ </connection>
+ <connection kind="clock" version="10.1" start="clk_50.clk" end="dir_left.clk" />
+ <connection
+   kind="avalon"
+   version="10.1"
+   start="cpu.data_master"
+   end="dir_left.s1">
+  <parameter name="arbitrationPriority" value="1" />
+  <parameter name="baseAddress" value="0x06001070" />
+ </connection>
+ <connection kind="clock" version="10.1" start="clk_50.clk" end="dir_right.clk" />
+ <connection
+   kind="avalon"
+   version="10.1"
+   start="cpu.data_master"
+   end="dir_right.s1">
+  <parameter name="arbitrationPriority" value="1" />
+  <parameter name="baseAddress" value="0x06001080" />
+ </connection>
+ <connection kind="clock" version="10.1" start="clk_50.clk" end="chain_init.clk" />
+ <connection
+   kind="avalon"
+   version="10.1"
+   start="cpu.data_master"
+   end="chain_init.s1">
+  <parameter name="arbitrationPriority" value="1" />
+  <parameter name="baseAddress" value="0x06001090" />
  </connection>
 </system>
