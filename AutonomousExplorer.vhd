@@ -147,7 +147,7 @@ begin
 				
 				out_port_from_the_chain_init => GPIO_0(20),
 				
-				out_port_from_the_i2c_scl => GPIO_0(0),
-            bidir_port_to_and_from_the_i2c_sda => GPIO_0(1)
+				out_port_from_the_i2c_scl => GPIO_0(33),
+            bidir_port_to_and_from_the_i2c_sda => GPIO_0(32)
 		  );
 end structure;
